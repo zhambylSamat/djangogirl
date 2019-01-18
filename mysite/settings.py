@@ -25,7 +25,7 @@ SECRET_KEY = '3e3+kr-f6g7dr&#w(2w%(yn1u!dmo62m_d1_^wu1-i$9_f!p!$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'zhambyl.pythonanyware.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'zhambyl.pythonanyware.com', '.herokuapp.com']
 
 
 # Application definition
@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'djangogirls',
         'USER': 'postgres', # zhambyl
         'PASSWORDS': '', # Password_123
@@ -128,3 +128,5 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 LOGIN_REDIRECT_URL = '/'
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
